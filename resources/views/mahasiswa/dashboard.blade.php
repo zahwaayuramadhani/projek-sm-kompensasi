@@ -10,11 +10,23 @@
 
 @section('content')
 <div class="p-6">
+    @if(Auth::user()->level == 2)
+        @if($adaKompensasi)
+            <div class="mb-6 p-4 bg-orange-50 border-l-4 border-orange-500 text-orange-700 rounded shadow-sm">
+                <p class="font-bold">⚠️ Perhatian!</p>
+                <p>Nama Anda terdaftar dalam daftar kompensasi. Silakan segera cek detailnya dan lakukan pengajuan banding jika diperlukan.</p>
+            </div>
+        @else
+            <div class="mb-6 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded shadow-sm">
+                <p class="font-bold">Status Aman</p>
+                <p>Nama Anda tidak terdaftar dalam daftar kompensasi. Tetap semangat kuliahnya!</p>
+            </div>
+        @endif
+    @endif
+
     <div class="grid grid-cols-1 gap-6 max-w-5xl">
-        <!-- Card 1: Informasi Kompensasi -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="p-6 flex items-start space-x-4">
-                <!-- Icon Circle -->
                 <div class="flex-shrink-0 w-10 h-10 bg-[#002384] text-white rounded-full flex items-center justify-center shadow-md">
                     <i class="fas fa-info-circle text-lg"></i>
                 </div>
@@ -47,10 +59,8 @@
             </div>
         </div>
 
-        <!-- Card 2: Pelaksanaan Kompensasi -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="p-6 flex items-start space-x-4">
-                <!-- Icon Circle -->
                 <div class="flex-shrink-0 w-10 h-10 bg-[#63A0EF] text-white rounded-full flex items-center justify-center shadow-md">
                     <i class="fas fa-calendar-check text-lg"></i>
                 </div>

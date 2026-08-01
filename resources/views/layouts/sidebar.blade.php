@@ -16,12 +16,11 @@
             <span>Dashboard</span>
         </a>
 
-        <!-- Kompensasi -->
         <div class="pt-4 pb-1">
             <p class="px-3 text-[9px] font-bold text-blue-100 uppercase tracking-widest opacity-80">Kompensasi</p>
         </div>
-        <a href="{{ route('kompensasi.index') }}" 
-           class="flex items-center gap-2 px-3 py-2 rounded transition text-xs {{ request()->routeIs('kompensasi.*') ? 'bg-white/25 text-white font-semibold' : 'text-white hover:bg-white/10' }}">
+<a href="{{ Auth::user()->level == 1 ? route('kompensasi.index') : route('mahasiswa.kompensasi.index') }}"
+        class="flex items-center gap-2 px-3 py-2 rounded transition text-xs {{ request()->routeIs('kompensasi.*') ? 'bg-white/25 text-white font-semibold' : 'text-white hover:bg-white/10' }}">
             <i class="fas fa-shapes w-4 text-center"></i>
             <span>Kompensasi</span>
         </a>
@@ -33,7 +32,6 @@
             <span>Pengajuan Banding</span>
         </a>
             
-        <!-- Data -->
         <div class="pt-4 pb-1">
             <p class="px-3 text-[9px] font-bold text-blue-100 uppercase tracking-widest opacity-80">Data</p>
         </div>
@@ -50,13 +48,18 @@
         @endif
 
         @if(Auth::user()->level == 2)
-        <a href="" 
+        {{-- <a href="uyee/kompensasi" 
+           class="flex items-center gap-2 px-3 py-2 rounded transition text-xs {{ request()->routeIs('kompensasi.*') ? 'bg-white/25 text-white font-semibold' : 'text-white hover:bg-white/10' }}">
+            <i class="fas fa-shapes w-4 text-center"></i>
+            <span>Kompensasi</span>
+        </a> --}}
+        <a href="/mahasiswa/pengajuan_banding" 
            class="flex items-center gap-2 px-3 py-2 rounded transition text-xs {{ request()->routeIs('pengajuan_banding.*') ? 'bg-white/25 text-white font-semibold' : 'text-white hover:bg-white/10' }}">
             <i class="fas fa-pencil-alt w-4 text-center"></i>
             <span>Pengajuan Banding</span>
         </a>
 
-        <a href="" 
+        <a href="{{ route('mahasiswa.riwayat_banding') }}"
            class="flex items-center gap-2 px-3 py-2 rounded transition text-xs {{ request()->routeIs('riwayat_banding.*') ? 'bg-white/25 text-white font-semibold' : 'text-white hover:bg-white/10' }}">
             <i class="fas fa-history text-xs w-4 text-center"></i>
             <span>Riwayat Banding</span>

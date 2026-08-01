@@ -24,7 +24,6 @@
             text-align: center;
         }
 
-        /* Container untuk logo gambar */
         .logo-container {
             margin-bottom: 15px;
             display: flex;
@@ -32,7 +31,7 @@
         }
 
         .logo-img {
-            width: 80px; /* Ukuran bisa kamu sesuaikan */
+            width: 80px; 
             height: auto;
             object-fit: contain;
         }
@@ -55,7 +54,7 @@
             border: 1px solid #ddd;
             outline: none;
             font-size: 14px;
-            box-sizing: border-box; /* Agar padding tidak merusak lebar */
+            box-sizing: border-box;
         }
 
         input:focus {
@@ -67,7 +66,6 @@
             padding: 12px;
             border: none;
             border-radius: 20px;
-            /* Menggunakan palet biru yang sama dengan sidebar */
             background: linear-gradient(to right, #63A0EF, #4a90e2); 
             color: white;
             font-size: 14px;
@@ -98,12 +96,23 @@
 </head>
 <body>
     <div class="card">
-        <!-- Logo JKB menggantikan teks JB -->
         <div class="logo-container">
             <img src="{{ asset('img/jkb.png') }}" alt="Logo JKB" class="logo-img">
         </div>
         
         <div class="title">Sistem Manajemen Kompensasi</div>
+
+        @if (session('success'))
+            <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; border: 1px solid #c3e6cb;">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; border: 1px solid #f5c6cb;">
+                {{ $errors->first() }}
+            </div>
+        @endif
 
         <form action="{{ route('login.proses') }}" method="POST">
             @csrf

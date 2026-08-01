@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Mahasiswa;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    protected $with = ['mahasiswa'];
 
     /**
-     * Kolom yang boleh diisi secara massal.
      */
     protected $fillable = [
         'username',
@@ -21,7 +22,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Kolom yang harus disembunyikan saat serialisasi (seperti API).
      */
     protected $hidden = [
         'password',
@@ -36,5 +36,10 @@ class User extends Authenticatable
         return [
             'password' => 'hashed',
         ];
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'id_user', 'id');
     }
 }

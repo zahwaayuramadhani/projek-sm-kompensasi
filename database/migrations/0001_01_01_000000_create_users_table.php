@@ -14,9 +14,9 @@ return new class extends Migration
         // Tabel Utama User
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique(); // Ditambah unique agar tidak ada username kembar
+            $table->string('username')->unique();
             $table->string('password');
-            $table->tinyInteger('level')->default(0); // 0: Mahasiswa, 1: Admin, dsb
+            $table->tinyInteger('level')->default(0); 
             $table->rememberToken();
             $table->timestamps();
         });
